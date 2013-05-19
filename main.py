@@ -17,10 +17,6 @@ from model import User, Item, DisplayItem
 
 class MainPage(BaseHandler):
 
-    FEED_LENGTH = 10
-    user = None
-    SEARCH = 2
-
     def get(self):
         self.setupUser()
 
@@ -39,8 +35,6 @@ class MainPage(BaseHandler):
         self.response.out.write(template.render(path,values))
 
     def post(self):
-        self.get()
-
 
         numArgs = len(self.request.arguments())
 
@@ -49,32 +43,6 @@ class MainPage(BaseHandler):
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
 
-    def setupUser(self):
-        if self.current_user != None:
-            id = self.current_user["id"]    
-            q = User.all().filter('id =', id)
-
-            self.user = q.get()
-
-            if self.user == None:
-                self.user = User(id = self.current_user["id"],
-                    name = self.current_user["name"],
-                    profile_url = self.current_user["profile_url"],
-                    items = [],
-                    access_token = self.current_user["access_token"]
-                    )
-                self.user.put()
-
-    def itemToDisplayItem(self, item):
-        user = db.get(item.seller[0])
-        disp = DisplayItem(id = item.key(),
-            itemName = item.itemName,
-            price = item.price,
-            sellerName = user.name,
-            sellerURL = user.profile_url,
-            description = item.description
-            )
-        return disp
 
         
 # this is probably bad

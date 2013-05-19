@@ -2,7 +2,7 @@ import webapp2
 import facebook
 from google.appengine.ext import db
 from webapp2_extras import sessions
-from model import User, Item
+from model import User, Item, DisplayItem
 
 
 FACEBOOK_APP_ID = "284783798323209"
@@ -17,6 +17,7 @@ class BaseHandler(webapp2.RequestHandler):
         more information.
         """
     user = None
+    FEED_LENGTH = 10
     SEARCH = 2
     POST = 5
 
@@ -89,4 +90,15 @@ class BaseHandler(webapp2.RequestHandler):
                     access_token = self.current_user["access_token"]
                     )
                 self.user.put()
+
+    def itemToDisplayItem(self, item):
+        user = db.get(item.seller[0])
+        disp = DisplayItem(id = item.key(),
+            itemName = item.itemName,
+            price = item.price,
+            sellerName = user.name,
+            sellerURL = user.profile_url,
+            description = item.description
+            )
+        return disp
 

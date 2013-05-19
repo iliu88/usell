@@ -18,9 +18,6 @@ from basehandler import BaseHandler
 
 class SearchPage(BaseHandler):
 
-    user = None
-    SEARCH = 2
-
     def get(self):
         self.setupUser()
 
@@ -68,15 +65,7 @@ class SearchPage(BaseHandler):
                     access_token = self.current_user["access_token"])
                 self.user.put()
 
-    def itemToDisplayItem(self, item):
-        user = db.get(item.seller[0])
-        disp = DisplayItem(itemName = item.itemName,
-            price = item.price,
-            sellerName = user.name,
-            sellerURL = user.profile_url,
-            description = item.description
-            )
-        return disp
+
 
 
 
