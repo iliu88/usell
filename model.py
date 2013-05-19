@@ -26,19 +26,10 @@ class User(search.SearchableModel):
 class DisplayItem():
     
     def __init__(self, id, itemName, price, sellerName, sellerURL, description):
-<<<<<<< HEAD
-        self.id = id
-=======
         self.editLink = "/edit_item=" + str(id)
->>>>>>> sam's-branch
         self.itemName = itemName
         self.price = price
         self.sellerName = sellerName
         self.sellerURL = sellerURL
         self.description = description
-<<<<<<< HEAD
 
-    editLink(self):
-        return "/edit_item" + self.
-=======
->>>>>>> sam's-branch
