@@ -21,3 +21,6 @@ handlers:
 - url: /search=.*
   script: search.py
 
+- url: /edit_item=.*
+  script: edit_page.py
+
