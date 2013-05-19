@@ -25,9 +25,13 @@ class User(search.SearchableModel):
 
 class DisplayItem():
     
-    def __init__(self, itemName, price, sellerName, sellerURL, description):
+    def __init__(self, id, itemName, price, sellerName, sellerURL, description):
+        self.id = id
         self.itemName = itemName
         self.price = price
         self.sellerName = sellerName
         self.sellerURL = sellerURL
         self.description = description
+
+    editLink(self):
+        return "/edit_item" + self.
