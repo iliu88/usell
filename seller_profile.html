@@ -1,0 +1,57 @@
+<!-- Banner stuff: should be the same for each page. -->
+
+<html>
+<head>
+<script type"text/JavaScript" src = "facebook.js"></script>
+<link rel="stylesheet" type="text/css" href="static/main.css" >
+<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id = "wrapper">
+<div id = "top">
+<div id = "title">
+USELLIT
+</div>
+<div id = "slogan">
+Don't want it? Sell it!
+</div>
+<div id = "list">
+<ul>
+<li class = "left"><a class="nav" href = "/">home</a></li>
+<li class = "left"><a class="nav" "items" href = "/seller_profile">my stuff</a></li>
+<li class = "left"><a class="nav" href = "/post_item">post</a></li>
+
+<form class = "right" action="" method="post">
+    <input type="submit" value = "" id = "button"></input>
+    <select class = "right" id = "category" name = "category">
+        <option value="Book">Book</option>
+        <option value="Furniture">Furniture</option>
+    </select>
+    <input type="text" id = "search" name = "query"></input>
+</form>
+</ul>  
+</div>
+</div>
+
+<!-- This will vary from page to page (maybe) -->
+<div id = "itemList">
+
+    {% for item in items %}
+    <fieldset name = "Your Items">
+        <div class = "item">
+            <img src = "http://courses.csail.mit.edu/6.046/spring03/images/clrs2.jpg" class = "itemPhoto"/>
+            <div class = "itemData">
+                <p class = "itemName">{{item.itemName}}</p>
+                <p class = "price">${{item.price}}</p>
+                <span class = "seller">Being sold by <a href = {{item.sellerURL}} target="_blank">{{item.sellerName}}</a></span>
+                <p class = "description">{{item.description}}</p>
+            </div>
+        </div>
+    </fieldset>
+
+    {% endfor %}
+</div>
+
+</div>
+</body>
+</html>

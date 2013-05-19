@@ -1,0 +1,69 @@
+<!-- Banner stuff: should be the same for each page. -->
+
+<html>
+<head>
+<script type"text/JavaScript" src = "facebook.js"></script>
+<link rel="stylesheet" type="text/css" href="static/main.css" >
+<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id = "wrapper">
+<div id = "top">
+<div id = "title">
+USELLIT
+</div>
+<div id = "slogan">
+Don't want it? Sell it!
+</div>
+<div id = "list">
+<ul>
+<li class = "left"><a class="nav" href = "/">home</a></li>
+<li class = "left"><a class="nav" "items" href = "/seller_profile">my stuff</a></li>
+<li class = "left"><a class="nav" href = "/post_item">post</a></li>
+
+
+<form class = "right" action="" method="post">
+    <input type="submit" value = "" id = "button"></input>
+    <select class = "right" id = "category" name = "category">
+        <option value="Book">Book</option>
+        <option value="Furniture">Furniture</option>
+    </select>
+    <input type="text" id = "search" name = "query"></input>
+</form>
+
+
+</ul>  
+</div>
+</div>
+
+<!-- This will vary from page to page (maybe) -->
+<div id = "postPortal">
+    <form action="" method="post" accept-charset="utf-8">
+        <fieldset name="Sell An Item">
+            <legend>
+                Post an Item to Sell!</legend>
+            <label>Item Name:</label>
+            <input type="text" name="itemName" id="itemName" size="40"><br/>
+            <label for="price">Price:</label>
+            <input name="price" type="number" id="price" step="any"> <br/> 
+            <label for="description">Description:</label>
+            <textarea type="text" name="description" id="description" 
+            rows="3" cols="60"></textarea> <br/>
+            <label for="category">Category: </label>
+            <select name="category">
+                <option value="Books">Books</option>
+                <option value="Furniture">Furniture</option>
+            </select> <br/>                     
+            <form action="upload_file.php" method="post"
+                enctype="multipart/form-data">
+                <label for="file">Image File:</label>
+                <input type="file" name="file" id="file"><br>
+            </form>
+            <div><input type="submit" name="Submit" value="Post New item"></div>   
+        </fieldset>      
+    </form>
+</div>
+
+</div>
+</body>
+</html>
