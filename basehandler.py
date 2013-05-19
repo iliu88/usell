@@ -11,11 +11,11 @@ FACEBOOK_APP_SECRET = "488d93b118272ac03038445c1f4c3c15"
 class BaseHandler(webapp2.RequestHandler):
     """Provides access to the active Facebook user in self.current_user
         
-        The property is lazy-loaded on first access, using the cookie saved
-        by the Facebook JavaScript SDK to determine the user ID of the active
-        user. See http://developers.facebook.com/docs/authentication/ for
-        more information.
-        """
+    The property is lazy-loaded on first access, using the cookie saved
+    by the Facebook JavaScript SDK to determine the user ID of the active
+    user. See http://developers.facebook.com/docs/authentication/ for
+    more information.
+    """
     user = None
     FEED_LENGTH = 10
     SEARCH = 2
