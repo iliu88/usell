@@ -67,7 +67,8 @@ class MainPage(BaseHandler):
 
     def itemToDisplayItem(self, item):
         user = db.get(item.seller[0])
-        disp = DisplayItem(itemName = item.itemName,
+        disp = DisplayItem(id = item.key(),
+            itemName = item.itemName,
             price = item.price,
             sellerName = user.name,
             sellerURL = user.profile_url,

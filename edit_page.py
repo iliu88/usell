@@ -15,33 +15,24 @@ from google.appengine.ext import db, search, webapp
 from basehandler import BaseHandler
 from model import User, Item, DisplayItem
 
-class SellerPage(BaseHandler):
+class EditPage(BaseHandler):
 
-    FEED_LENGTH = 10
     user = None
-    SEARCH = 2
 
     def get(self):
         self.setupUser()
 
-        items = []
-        keys = self.user.items
+        itemKey = self.request.url.split("%3D")[1]
+        item = db.get(itemKey)
 
-        for key in keys:
-            items.append(db.get(key))
+        print item.itemName        
         
-        dispItems = []
-        for item in items:
-            if item.seller != None:
-                disp = self.itemToDisplayItem(item)
-                dispItems.append(disp)
-        
-        path = os.path.join(os.path.dirname(__file__), 'seller_profile.html')
-        values = {'items':dispItems}
-        self.response.out.write(template.render(path,values))
+        path = os.path.join(os.path.dirname(__file__), 'edit_page.html')
+        self.response.out.write(template.render(path,{}))
 
     def post(self):
         self.get()
+
 
         numArgs = len(self.request.arguments())
 
@@ -77,14 +68,15 @@ class SellerPage(BaseHandler):
             )
         return disp
 
-
+        
 # this is probably bad
 config = {}
 config['webapp2_extras.sessions'] = dict(secret_key='1234')
 
-application = webapp2.WSGIApplication(
-                                     [('/seller_profile', SellerPage)],
-                                     config=config,                                 
+
+application = webapp.WSGIApplication(
+                                     [('/edit_item=.*', EditPage)],
+                                     config=config,
                                      debug=True)
 
 def main():

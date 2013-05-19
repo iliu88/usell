@@ -20,3 +20,10 @@ handlers:
 
 - url: /search=.*
   script: search.py
+<<<<<<< HEAD
+=======
+
+- url: /edit_item=.*
+  script: edit_page.py
+
+>>>>>>> sam's-branch
