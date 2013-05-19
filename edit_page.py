@@ -17,8 +17,6 @@ from model import User, Item, DisplayItem
 
 class EditPage(BaseHandler):
 
-    user = None
-
     def get(self):
         self.setupUser()
 

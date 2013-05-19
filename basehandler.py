@@ -16,6 +16,10 @@ class BaseHandler(webapp2.RequestHandler):
         user. See http://developers.facebook.com/docs/authentication/ for
         more information.
         """
+    user = None
+    SEARCH = 2
+    POST = 5
+
     @property
     def current_user(self):
         if self.session.get("user"):
@@ -69,4 +73,20 @@ class BaseHandler(webapp2.RequestHandler):
 
     def write(self, s):
         self.response.out.write(s)
+
+    def setupUser(self):
+        if self.current_user != None:
+            id = self.current_user["id"]    
+            q = User.all().filter('id =', id)
+
+            self.user = q.get()
+
+            if self.user == None:
+                self.user = User(id = self.current_user["id"],
+                    name = self.current_user["name"],
+                    profile_url = self.current_user["profile_url"],
+                    items = [],
+                    access_token = self.current_user["access_token"]
+                    )
+                self.user.put()
 

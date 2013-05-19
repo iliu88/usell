@@ -19,10 +19,6 @@ from basehandler import BaseHandler
 
 class PostPage(BaseHandler):
 
-    user = None
-    SEARCH = 2
-    POST = 5
-
     def get(self):
         self.setupUser()
         path = os.path.join(os.path.dirname(__file__), 'post_item.html')
@@ -56,21 +52,7 @@ class PostPage(BaseHandler):
             self.redirect('/seller_profile')
 
 
-    def setupUser(self):
-        if self.current_user != None:
-            id = self.current_user["id"]    
-            q = User.all().filter('id =', id)
 
-            self.user = q.get()
-
-            if self.user == None:
-                self.user = User(id = self.current_user["id"],
-                    name = self.current_user["name"],
-                    profile_url = self.current_user["profile_url"],
-                    items = [],
-                    access_token = self.current_user["access_token"]
-                    )
-                self.user.put()
 
 
 
