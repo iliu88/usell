@@ -1,0 +1,85 @@
+<!-- Banner stuff: should be the same for each page. -->
+
+<html>
+<head>
+<script type"text/JavaScript" src = "facebook.js"></script>
+<link rel="stylesheet" type="text/css" href="static/main.css" >
+</head>
+<body>
+<div id = "wrapper">
+<div id = "top">
+<div id = "title">
+Usellit
+</div>
+<div id = "slogan">
+Don't want it? Sell it!
+</div>
+<div id = "list">
+<ul>
+<li class = "left"><a class="nav" href = "/">home</a></li>
+<li class = "left"><a class="nav" "items" href = "/seller_profile">my stuff</a></li>
+<li class = "left"><a class="nav" href = "/post_item">post</a></li>
+<form class = "right">
+<input type="button" id = "button"></input>
+<select class = "right" id = "category">
+<option value="Book">Book</option>
+<option value="Furniture">Furniture</option>
+</select>
+<input type="text" id = "search"></input>
+</form>
+</ul>  
+</div>
+</div>
+
+<!-- This will vary from page to page (maybe) -->
+<div id = "postPortal">
+    <form action="" method="post" accept-charset="utf-8">
+        <fieldset name="Sell An Item">
+            <legend>
+                Post an Item to Sell!</legend>
+            <label style="color:#3b5998;font-family:tahoma;">
+                <b>
+                    Item Name:</label>
+            <input type="text" name="itemName" id="itemName" size="40">
+                
+            <label for="price" style="color:#3b5998;font-family:tahoma;">
+                <b>
+                    <br>
+                    Price:</label>
+            <input name="price" type="number" id="price" step="any"> <br/> 
+                
+                <!-- Description -->
+            <label for="description" style="color:#3b5998;font-family:tahoma;">
+            <b>
+            Description:</label>
+            <textarea type="text" name="description" id="description" 
+            rows="3" cols="60"></textarea> <br />
+            
+            <!-- Category Drop down box -->
+            <label for="category" style="color:#3b5998;font-family:tahoma;">
+            <b>
+            Category: </label>
+            <select name="category">
+                <option value="Books">Books</option>
+                <option value="Furniture">Furniture</option>
+            </select> <br/>                     
+                    
+            <!-- Upload item picture --> 
+            <form action="upload_file.php" method="post"
+                enctype="multipart/form-data">
+                <label for="file" style="color:#3b5998;font-family:tahoma;">
+                    <b>
+                        Image File:</label>
+                <input type="file" name="file" id="file"><br>
+            </form>
+                    
+            <!-- Submit button -->
+            <div><input type="submit" name="Submit" value="Post New item"></div>   
+        </fieldset>      
+    </form>
+</div>
+
+        </div>
+    </body>
+</html>
+

@@ -2,60 +2,32 @@
 # Data is stored hierarchically: all items belong to a user,
 # all users belong to a network.
 
-from google.appengine.ext import db
+from google.appengine.ext import db, search
 
-# An object representing a network (a college/university/other
-# community group if we include non-colleges)
-class Network(db.Model):
-    name = db.StringProperty()
-    # some form of token
+class Item(search.SearchableModel):
+    itemName = db.StringProperty(required=False)
+    price = db.StringProperty(required=False)
+    description = db.StringProperty(required=False)
+    image = db.StringProperty(required=False)
+    category = db.StringProperty(required=False)
+    created = db.DateTimeProperty(auto_now_add=True)
+    updated = db.DateTimeProperty(auto_now_add=True)
+    seller = db.ListProperty(db.Key)
 
+class User(search.SearchableModel):
+    id = db.StringProperty(required=True)
+    created = db.DateTimeProperty(auto_now=True)
+    updated = db.DateTimeProperty(auto_now=True)
+    name = db.StringProperty(required=True)
+    profile_url = db.StringProperty(required=True)
+    access_token = db.StringProperty(required=True)
+    items = db.ListProperty(db.Key)
 
-    # test if a given value is in the database
-    def exists(self):
-        ex = False
-        q = Network.all()
-        q.filter("name =", self.name)            
-        q.run(limit=1)
-        for entity in q:
-            return entity
-        return None
-
-# An object representing a user of our application
-class User(db.Model):
-    firstName = db.StringProperty()
-    lastName = db.StringProperty()
-    # fb_id_token
-
-    # return full name
-    def fullName(self):
-        return self.firstName + " " + self.lastName
-
-    # test if a given value is in the database
-    def exists(self):
-        ex = False
-        q = User.all()
-        q.filter("firstName =", self.firstName)
-        q.filter("lastName =", self.lastName)
-        q.run(limit=1)
-        for entity in q:
-            return entity
-        return None
-
-# An object representing an item within the marketplace
-class Item(db.Model):
-    name = db.StringProperty()
-    description = db.StringProperty(multiline=True)
-    # photo?
-
-    # test if a given value is in the database
-    def exists(self):
-        ex = False
-        q = Item.all()
-        q.filter("name =", self.name)            
-        q.run(limit=1)
-        for entity in q:
-            return entity
-        return None
-
-
+class DisplayItem():
+    
+    def __init__(self, itemName, price, sellerName, sellerURL, description):
+        self.itemName = itemName
+        self.price = price
+        self.sellerName = sellerName
+        self.sellerURL = sellerURL
+        self.description = description

@@ -20,7 +20,6 @@ Don't want it? Sell it!
 <li class = "left"><a class="nav" href = "/">home</a></li>
 <li class = "left"><a class="nav" "items" href = "/seller_profile">my stuff</a></li>
 <li class = "left"><a class="nav" href = "/post_item">post</a></li>
-
 <form class = "right" action="" method="post">
     <input type="submit" value = "" id = "button"></input>
     <select class = "right" id = "category" name = "category">
@@ -35,7 +34,7 @@ Don't want it? Sell it!
 
 <!-- This will vary from page to page (maybe) -->
 <div id = "itemList">
-
+    You searched for {{query}}
     {% for item in items %}
     <fieldset name = "Recently posted items">
         <div class = "item">
