@@ -20,6 +20,8 @@ class BaseHandler(webapp2.RequestHandler):
     FEED_LENGTH = 10
     SEARCH = 2
     POST = 5
+    POST_PICTURE = 6
+
 
     @property
     def current_user(self):
