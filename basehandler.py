@@ -77,8 +77,6 @@ class BaseHandler(webapp2.RequestHandler):
     def write(self, s):
         self.response.out.write(s)
 
-
-
     def itemToDisplayItem(self, item):
         user = db.get(item.seller[0])
         disp = DisplayItem(id = item.key(),
@@ -92,7 +90,6 @@ class BaseHandler(webapp2.RequestHandler):
 
     def setupUser(self):
         if self.current_user != None:
-            print "have a currentuser"
             id = self.current_user["id"]    
             q = User.all().filter('id =', id)
 

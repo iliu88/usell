@@ -8,7 +8,7 @@ class Item(search.SearchableModel):
     itemName = db.StringProperty(required=False)
     price = db.StringProperty(required=False)
     description = db.StringProperty(required=False)
-    # image = db.BlobProperty(default=None, required=False)
+    image = db.StringProperty(required=False)
     category = db.StringProperty(required=False)
     created = db.DateTimeProperty(auto_now_add=True)
     updated = db.DateTimeProperty(auto_now_add=True)
