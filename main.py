@@ -18,6 +18,25 @@ from model import User, Item, DisplayItem
 class MainPage(BaseHandler):
 
     def get(self):
+
+        item = Item(itemName="couch", \
+                     price="24", \
+                     description= "comfy", \
+                     category="Books", \
+                     )
+
+        item.put()
+        user = User(name="Sam Szuflita", \
+                    profile_url="google.com", \
+                    id="5", \
+                    access_token="hello",
+                    items = [item.key()]
+            )
+
+        user.put()
+        item.seller = [user.key()]
+        item.put()
+
         self.setupUser()
 
         items = db.GqlQuery('SELECT * FROM Item '
@@ -42,6 +61,8 @@ class MainPage(BaseHandler):
             # this is a search!
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
+
+
 
 
         

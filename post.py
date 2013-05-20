@@ -40,7 +40,7 @@ class PostPage(BaseHandler):
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
 
-        else:
+        """else:
             # this is a post
             item = Item(itemName=self.request.get('itemName'), \
                      price=self.request.get('price'), \
@@ -56,7 +56,7 @@ class PostPage(BaseHandler):
 
             self.user.items.append(item.key())
             self.user.put()
-            self.redirect('/seller_profile')
+            self.redirect('/seller_profile')"""
 
 
 
