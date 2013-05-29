@@ -16,24 +16,33 @@ from basehandler import BaseHandler
 from model import User, Item, DisplayItem
 
 class SellerPage(BaseHandler):
-
+    """
+    This handler builds the seller_profile page, whic
+    displays each item belonging to the current user.
+    It also creates links through which the user can
+    update and edit their items.
+    """
     def get(self):
         self.setupUser()
 
-        items = []
-        keys = self.user.items
+        values = {}
 
-        for key in keys:
-            items.append(db.get(key))
-        
-        dispItems = []
-        for item in items:
-            if item.seller != None:
-                disp = self.itemToDisplayItem(item)
-                dispItems.append(disp)
+        if self.user != None:
+            items = []
+            keys = self.user.items
+
+            for key in keys:
+                items.append(db.get(key))
+            
+            dispItems = []
+            for item in items:
+                if item.seller != None:
+                    disp = self.itemToDisplayItem(item)
+                    dispItems.append(disp)
+
+            values = {'items':dispItems}
         
         path = os.path.join(os.path.dirname(__file__), 'seller_profile.html')
-        values = {'items':dispItems}
         self.response.out.write(template.render(path,values))
 
     def post(self):
@@ -49,7 +58,7 @@ class SellerPage(BaseHandler):
 
 # this is probably bad
 config = {}
-config['webapp2_extras.sessions'] = dict(secret_key='1234')
+config['webapp2_extras.sessions'] = dict(secret_key='')
 
 application = webapp2.WSGIApplication(
                                      [('/seller_profile', SellerPage)],

@@ -4,6 +4,10 @@ runtime: python27
 api_version: 1
 threadsafe: false
 
+libraries:
+- name: django
+  version: "1.2"
+
 handlers:
 
 - url: /static
@@ -24,3 +28,8 @@ handlers:
 - url: /edit_item=.*
   script: edit_page.py
 
+- url: /upload
+  script: upload.py
+
+- url: /view_photo/.*
+  script: photo_viewer.py

@@ -2,14 +2,14 @@
 
 <html>
 <head>
-<script type"text/JavaScript" src = "facebook.js"></script>
 <link rel="stylesheet" type="text/css" href="static/main.css" >
+<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id = "wrapper">
 <div id = "top">
 <div id = "title">
-Usellit
+USELLIT
 </div>
 <div id = "slogan">
 Don't want it? Sell it!
@@ -19,60 +19,63 @@ Don't want it? Sell it!
 <li class = "left"><a class="nav" href = "/">home</a></li>
 <li class = "left"><a class="nav" "items" href = "/seller_profile">my stuff</a></li>
 <li class = "left"><a class="nav" href = "/post">post</a></li>
-<form class = "right">
-<input type="button" id = "button"></input>
-<select class = "right" id = "category">
-<option value="Book">Book</option>
-<option value="Furniture">Furniture</option>
-</select>
-<input type="text" id = "search"></input>
+
+
+<form class = "right" action="" method="post">
+    <input type="submit" value = "" id = "button"></input>
+    <select class = "right" id = "category" name = "category">
+        <option value="Book">Book</option>
+        <option value="Furniture">Furniture</option>
+    </select>
+    <input type="text" id = "search" name = "query"></input>
 </form>
+
+
 </ul>  
 </div>
 </div>
 
 <!-- This will vary from page to page (maybe) -->
-<div id = "postPortal">
-    <form action="{{ uploadURL }}" method="POST" enctype="multipart/form-data">
+<div id = "itemList">
+    <form action="{{upload_url}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
         <fieldset name="Sell An Item">
-            <legend>
-                Post an Item to Sell!</legend>
-            <label style="color:#3b5998;font-family:tahoma;">
-                <b>
-                    Item Name:</label>
-            <input type="text" name="itemName" id="itemName" size="40">
-                
-            <label for="price" style="color:#3b5998;font-family:tahoma;">
-                <b>
-                    <br>
-                    Price:</label>
-            <input name="price" type="number" id="price" step="any"> <br/> 
-                
-
-            <label for="description" style="color:#3b5998;font-family:tahoma;">
-            <b>
-            Description:</label>
-            <textarea type="text" name="description" id="description" 
-            rows="3" cols="60"></textarea> <br />
+            <h2>Post an Item to Sell!</he>
+            <div class="postItem">
             
-
-            <label for="category" style="color:#3b5998;font-family:tahoma;">
-            <b>
-            Category: </label>
-            <select name="category">
+            <!-- Item Name -->
+            <label class="postClass">Item Name:</label>
+            <input type="text" name="itemName" id="itemName" size="40" class="postClass"><br/>
+                
+            <!-- Price -->
+            <label for="price" class="postClass">Price:</label>
+            <input name="price" type="number" id="price" step="any" class="postClass"> <br/> 
+                
+            <!-- Description -->
+            <label for="description" class="postClass">Description:</label>
+            <textarea type="text" name="description" id="description" 
+            rows="3" cols="60" class="postClass"></textarea> <br/>
+                
+            <!-- Category -->
+            <label for="category" class="postClass">Category: </label>
+            <select name="category" class="postClass">
                 <option value="Books">Books</option>
                 <option value="Furniture">Furniture</option>
-            </select> <br/>                     
-            <!-- Upload item picture --> 
-            Upload File:
-            <input type="file" name="file"><br>
-                    
-            <!-- Submit button -->
-            <div><input type="submit" name="Submit" value="Submit"></div>   
-        </form>
+            </select> <br/>                    
+
+            <!-- Upload Image -->
+            <label for="file" class="postClass">Upload Image:</label>
+            <input type="file" name="file" class="postClass">
+            
+            <!-- Upload Image -->
+            <input class="centerPost" type="submit" name="Submit" value="Post New Item"></div> 
+        </fieldset>      
+    </form>
 </div>
 
-        </div>
-    </body>
-</html>
+</div>
 
+
+    <div id="fb-root"></div>
+    <script type"text/JavaScript" src = "/static/facebook.js"></script>
+</body>
+</html>

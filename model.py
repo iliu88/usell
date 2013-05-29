@@ -2,13 +2,16 @@
 # Data is stored hierarchically: all items belong to a user,
 # all users belong to a network.
 
+from google.appengine.ext import blobstore
+from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext import db, search
 
 class Item(search.SearchableModel):
     itemName = db.StringProperty(required=False)
     price = db.StringProperty(required=False)
     description = db.StringProperty(required=False)
-    image = db.StringProperty(required=False)
+    blobKey = blobstore.BlobReferenceProperty(required=False)
+    blobKey_str = db.StringProperty(required=False)
     category = db.StringProperty(required=False)
     created = db.DateTimeProperty(auto_now_add=True)
     updated = db.DateTimeProperty(auto_now_add=True)
@@ -25,11 +28,12 @@ class User(search.SearchableModel):
 
 class DisplayItem():
     
-    def __init__(self, id, itemName, price, sellerName, sellerURL, description):
+    def __init__(self, id, itemName, price, sellerName, sellerURL, description, blobKey_str):
         self.editLink = "/edit_item=" + str(id)
         self.itemName = itemName
         self.price = price
         self.sellerName = sellerName
         self.sellerURL = sellerURL
         self.description = description
+        self.blobKey_str = blobKey_str
 

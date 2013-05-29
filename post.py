@@ -4,7 +4,7 @@ import cgi
 import os
 import xml.etree.cElementTree as etree
 from google.appengine.ext.webapp import template
-from google.appengine.ext import webapp, blobstore
+from google.appengine.ext import webapp
 from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -16,23 +16,27 @@ import datetime
 # Import for data storage
 from google.appengine.ext import db
 from basehandler import BaseHandler
+from google.appengine.ext import blobstore
 
 class PostPage(BaseHandler):
+    """
+    This class handles the postPortal, where users can post items
+    to the datastore.  It passes the item data to the UploadHandler
+    which stores the item in the datastore and the photo in the
+    Blobstore.
+    """
 
     def get(self):
         self.setupUser()
-
-        uploadURL = blobstore.create_upload_url('/upload')
-        values = {'uploadURL': uploadURL}
-
         path = os.path.join(os.path.dirname(__file__), 'post.html')
+        
+        upload_url = blobstore.create_upload_url('/upload')
+        # For image uploading 
+        values = {'upload_url':upload_url}
+        
         self.response.out.write(template.render(path,values))
 
     def post(self):
-
-        # need to handle different kind of requests D:
-        self.get()
-
         numArgs = len(self.request.arguments())
 
         if numArgs == self.SEARCH:
@@ -40,27 +44,8 @@ class PostPage(BaseHandler):
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
 
-        """else:
-            # this is a post
-            item = Item(itemName=self.request.get('itemName'), \
-                     price=self.request.get('price'), \
-                     description=self.request.get('description'), \
-                     category=self.request.get('category'), \
-                     seller= [self.user.key()]
-                     )
-            i = self.request.get('image')
-            print i
-            i2 = i.encode('utf-8')
-            item.image = db.Blob(i2)
-            item.put()
-
-            self.user.items.append(item.key())
-            self.user.put()
-            self.redirect('/seller_profile')"""
-
-
-
-
+        # item POSTs will be handled by the UploadHandler
+        
 
 
 # this is probably bad

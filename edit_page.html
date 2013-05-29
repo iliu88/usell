@@ -2,7 +2,6 @@
 
 <html>
 <head>
-<script type"text/JavaScript" src = "facebook.js"></script>
 <link rel="stylesheet" type="text/css" href="static/main.css" >
 <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 </head>
@@ -34,8 +33,54 @@ Don't want it? Sell it!
 </div>
 
 <!-- This will vary from page to page (maybe) -->
-EDIT PAGE
-
+    <div id = "postPortal">
+        <form action="" method="post" accept-charset="utf-8">
+            <fieldset name="Edit An Item">
+                <legend>
+                    Edit an Item</legend>
+                <!-- Item Name -->
+                <label style="color:#3b5998;font-family:tahoma;">
+                <b>Item Name:</label>
+                <textarea type="text" name="itemName" id="itemName" cols="40" rows="1">{{items.itemName}}</textarea>
+                    
+                <!-- Price -->
+                <label for="price" style="color:#3b5998;font-family:tahoma;">
+                <b>Price:</label>
+                    <input name="price" type="number" id="price" step="any" value={{items.price}}> <br/> 
+                        
+                <!-- Description -->
+                <label for="description" style="color:#3b5998;font-family:tahoma;">
+                <b>Description:</label>
+                <textarea type="text" name="description" id="description" 
+                    rows="3" cols="60">{{items.description}}</textarea><br />
+                        
+                <!-- Category Drop down box -->
+                <label for="category" style="color:#3b5998;font-family:tahoma;">
+                <b>Category: </label>
+                <select name="category">
+                    <option value="Books">Books</option>
+                    <option value="Furniture">Furniture</option>
+                </select> <br/>                     
+                        
+                <!-- Upload item picture --> 
+                <form action="upload_file.php" method="post"
+                    enctype="multipart/form-data">
+                    <label for="file" style="color:#3b5998;font-family:tahoma;">
+                    <b>Image File:</label>
+                    <input type="file" name="file" id="file"><br>
+                </form>
+                        
+                <!-- Submit button -->
+                <div><input type="submit" name="Submit" value="Save Changes"></div>   
+                </fieldset>      
+        </form>
+    </div>
 </div>
+
+
+    <div id="fb-root"></div>
+    <script type"text/JavaScript" src = "/static/facebook.js"></script>
 </body>
+
+
 </html>

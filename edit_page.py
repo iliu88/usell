@@ -16,55 +16,51 @@ from basehandler import BaseHandler
 from model import User, Item, DisplayItem
 
 class EditPage(BaseHandler):
+    """
+    This handler is responsible for the edit page (when a user
+    wants to edit an item already stored in the datastore).
+    It displays the same postPortal, but with the fields
+    set to the old values of the item.
+    The url of this page will be of the form
+    /edit_item=.*
+    Here .* is the item's key.
+    """
 
     def get(self):
         self.setupUser()
 
+        # parse the item key from the URL
         itemKey = self.request.url.split("%3D")[1]
         item = db.get(itemKey)
-
-        print item.itemName        
         
+        # pass the item object to the template
+        values = {'items':item}
         path = os.path.join(os.path.dirname(__file__), 'edit_page.html')
-        self.response.out.write(template.render(path,{}))
+        self.response.out.write(template.render(path,values))
 
     def post(self):
-        self.get()
-
-
         numArgs = len(self.request.arguments())
+        
+        if numArgs == self.POST:
+            # Retrieve item 
+            itemKey = self.request.url.split("%3D")[1]
+            item = db.get(itemKey)
 
+            # Resave all the information of the item
+            item.itemName = self.request.get('itemName')
+            item.price = self.request.get('price')
+            item.description = self.request.get('description')
+            item.category = self.request.get('category')
+            # Saves in datastore again
+            item.put()
+        
+            # Redirect sell profile page
+            self.redirect('/seller_profile')
+    
         if numArgs == self.SEARCH:
-            # this is a search!
+            # this is a search
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
-
-    def setupUser(self):
-        if self.current_user != None:
-            id = self.current_user["id"]    
-            q = User.all().filter('id =', id)
-
-            self.user = q.get()
-
-            if self.user == None:
-                self.user = User(id = self.current_user["id"],
-                    name = self.current_user["name"],
-                    profile_url = self.current_user["profile_url"],
-                    items = [],
-                    access_token = self.current_user["access_token"]
-                    )
-                self.user.put()
-
-    def itemToDisplayItem(self, item):
-        user = db.get(item.seller[0])
-        disp = DisplayItem(id = item.key(),
-            itemName = item.itemName,
-            price = item.price,
-            sellerName = user.name,
-            sellerURL = user.profile_url,
-            description = item.description
-            )
-        return disp
 
         
 # this is probably bad

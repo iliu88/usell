@@ -135,18 +135,6 @@ fieldset {
     background: white;
 }
 
-.postItem {
-    padding-bottom: 100px;
-    width: 90%;
-    margin: 0 auto;
-    margin-top: 50px;
-    background: white;
-    background-color:white;
-    background*:white;
-    border: 0px;
-    text-align:left;
-}
-
 .item {
     padding-bottom: 100px;
     width: 90%;
@@ -156,27 +144,11 @@ fieldset {
     border: 0px;
 }
 
-.left_result {
-    float:left;
-    width:20%;
-    background: white;
-}
-
-.middle_result {
-    float:left;
-    width:50%;
-    background: white;
-}
-
-.right_result {
-    float:left;
-    width:20%;
-    background: white;
-}
-
 .itemPhoto {
-    height:120px;
-    width: 120px;
+    float: left;
+    height: 100px;
+    width: 100px;
+    margin-right: 20px;
     clear: left;
     background: white;
     border: 1px solid gray;
@@ -184,58 +156,27 @@ fieldset {
 
 .itemData {
     float: left;
-
+    height: 100px;
     background: white;
 }
 
 .itemName {
     background: white;
     color: black;
-    font-size: 20px;
-    font: tahoma;
-    width:50%;
+    font-size: 15px;
 }
 
 .price {
-    float:left;
     background: white;
     color: green;
-    font-size: 18px;
-    font: tahoma;
-    width:20%;
 }
 
 .seller {
-    background: white;
+    bacgkground: white;
     color: blue;
-    font-size: 18px;
-    font: tahoma;
 }
 
 .description {
     background: white;
-    font-size: 18px;
-    font: tahoma;
 }
 
-h2 {
-    background-color:white;
-}
-
-.bigText {
-    background:white;
-    font-size: 20;
-}
-
-.postClass {
-    background: white;
-}
-
-.centerPost {
-    background: white;
-    float:center;
-}
-
-b,i {
-    background-color:white;
-}

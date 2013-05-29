@@ -2,7 +2,6 @@
 
 <html>
 <head>
-<script type"text/JavaScript" src = "facebook.js"></script>
 <link rel="stylesheet" type="text/css" href="static/main.css" >
 <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 </head>
@@ -38,7 +37,7 @@ Don't want it? Sell it!
     {% for item in items %}
     <fieldset name = "Recently posted items">
         <div class = "item">
-            <img src = "http://courses.csail.mit.edu/6.046/spring03/images/clrs2.jpg" class = "itemPhoto"/>
+            <img src = "/view_photo/{{ item.blobKey_str }}" class = "itemPhoto"/>
             <div class = "itemData">
                 <p class = "itemName">{{item.itemName}}</p>
                 <p class = "price">${{item.price}}</p>
@@ -52,5 +51,9 @@ Don't want it? Sell it!
 </div>
 
 </div>
+
+
+    <div id="fb-root"></div>
+    <script type"text/JavaScript" src = "/static/facebook.js"></script>
 </body>
 </html>
