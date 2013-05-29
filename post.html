@@ -18,7 +18,7 @@ Don't want it? Sell it!
 <ul>
 <li class = "left"><a class="nav" href = "/">home</a></li>
 <li class = "left"><a class="nav" "items" href = "/seller_profile">my stuff</a></li>
-<li class = "left"><a class="nav" href = "/post_item">post</a></li>
+<li class = "left"><a class="nav" href = "/post">post</a></li>
 <form class = "right">
 <input type="button" id = "button"></input>
 <select class = "right" id = "category">
@@ -33,7 +33,7 @@ Don't want it? Sell it!
 
 <!-- This will vary from page to page (maybe) -->
 <div id = "postPortal">
-    <form action="" method="post" accept-charset="utf-8">
+    <form action="{{ uploadURL }}" method="POST" enctype="multipart/form-data">
         <fieldset name="Sell An Item">
             <legend>
                 Post an Item to Sell!</legend>
@@ -48,14 +48,14 @@ Don't want it? Sell it!
                     Price:</label>
             <input name="price" type="number" id="price" step="any"> <br/> 
                 
-                <!-- Description -->
+
             <label for="description" style="color:#3b5998;font-family:tahoma;">
             <b>
             Description:</label>
             <textarea type="text" name="description" id="description" 
             rows="3" cols="60"></textarea> <br />
             
-            <!-- Category Drop down box -->
+
             <label for="category" style="color:#3b5998;font-family:tahoma;">
             <b>
             Category: </label>
@@ -63,20 +63,13 @@ Don't want it? Sell it!
                 <option value="Books">Books</option>
                 <option value="Furniture">Furniture</option>
             </select> <br/>                     
-                    
             <!-- Upload item picture --> 
-            <form action="upload_file.php" method="post"
-                enctype="multipart/form-data">
-                <label for="file" style="color:#3b5998;font-family:tahoma;">
-                    <b>
-                        Image File:</label>
-                <input type="file" name="file" id="file"><br>
-            </form>
+            Upload File:
+            <input type="file" name="file"><br>
                     
             <!-- Submit button -->
-            <div><input type="submit" name="Submit" value="Post New item"></div>   
-        </fieldset>      
-    </form>
+            <div><input type="submit" name="Submit" value="Submit"></div>   
+        </form>
 </div>
 
         </div>

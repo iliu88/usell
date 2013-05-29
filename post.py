@@ -4,7 +4,7 @@ import cgi
 import os
 import xml.etree.cElementTree as etree
 from google.appengine.ext.webapp import template
-from google.appengine.ext import webapp
+from google.appengine.ext import webapp, blobstore
 from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -19,14 +19,14 @@ from basehandler import BaseHandler
 
 class PostPage(BaseHandler):
 
-    user = None
-    SEARCH = 2
-    POST = 5
-
     def get(self):
         self.setupUser()
-        path = os.path.join(os.path.dirname(__file__), 'post_item.html')
-        self.response.out.write(template.render(path,{}))
+
+        uploadURL = blobstore.create_upload_url('/upload')
+        values = {'uploadURL': uploadURL}
+
+        path = os.path.join(os.path.dirname(__file__), 'post.html')
+        self.response.out.write(template.render(path,values))
 
     def post(self):
 
@@ -40,37 +40,26 @@ class PostPage(BaseHandler):
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
 
-        if numArgs == self.POST:
+        """else:
             # this is a post
             item = Item(itemName=self.request.get('itemName'), \
                      price=self.request.get('price'), \
                      description=self.request.get('description'), \
-                     image=self.request.get('image'), \
                      category=self.request.get('category'), \
                      seller= [self.user.key()]
                      )
+            i = self.request.get('image')
+            print i
+            i2 = i.encode('utf-8')
+            item.image = db.Blob(i2)
             item.put()
 
             self.user.items.append(item.key())
             self.user.put()
-            self.redirect('/seller_profile')
+            self.redirect('/seller_profile')"""
 
 
-    def setupUser(self):
-        if self.current_user != None:
-            id = self.current_user["id"]    
-            q = User.all().filter('id =', id)
 
-            self.user = q.get()
-
-            if self.user == None:
-                self.user = User(id = self.current_user["id"],
-                    name = self.current_user["name"],
-                    profile_url = self.current_user["profile_url"],
-                    items = [],
-                    access_token = self.current_user["access_token"]
-                    )
-                self.user.put()
 
 
 
@@ -79,7 +68,7 @@ config = {}
 config['webapp2_extras.sessions'] = dict(secret_key='1234')        
 
 application = webapp.WSGIApplication(
-                                     [('/post_item', PostPage)],
+                                     [('/post', PostPage)],
                                      config=config,                                     
                                      debug=True)
 

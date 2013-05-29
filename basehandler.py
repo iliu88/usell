@@ -2,7 +2,7 @@ import webapp2
 import facebook
 from google.appengine.ext import db
 from webapp2_extras import sessions
-from model import User, Item
+from model import User, Item, DisplayItem
 
 
 FACEBOOK_APP_ID = "284783798323209"
@@ -11,11 +11,18 @@ FACEBOOK_APP_SECRET = "488d93b118272ac03038445c1f4c3c15"
 class BaseHandler(webapp2.RequestHandler):
     """Provides access to the active Facebook user in self.current_user
         
-        The property is lazy-loaded on first access, using the cookie saved
-        by the Facebook JavaScript SDK to determine the user ID of the active
-        user. See http://developers.facebook.com/docs/authentication/ for
-        more information.
-        """
+    The property is lazy-loaded on first access, using the cookie saved
+    by the Facebook JavaScript SDK to determine the user ID of the active
+    user. See http://developers.facebook.com/docs/authentication/ for
+    more information.
+    """
+    user = None
+    FEED_LENGTH = 10
+    SEARCH = 2
+    POST = 5
+    POST_PICTURE = 6
+
+
     @property
     def current_user(self):
         if self.session.get("user"):
@@ -70,3 +77,31 @@ class BaseHandler(webapp2.RequestHandler):
     def write(self, s):
         self.response.out.write(s)
 
+    def itemToDisplayItem(self, item):
+        user = db.get(item.seller[0])
+        disp = DisplayItem(id = item.key(),
+            itemName = item.itemName,
+            price = item.price,
+            sellerName = user.name,
+            sellerURL = user.profile_url,
+            description = item.description
+            )
+        return disp
+
+    def setupUser(self):
+        if self.current_user != None:
+            id = self.current_user["id"]    
+            q = User.all().filter('id =', id)
+
+            self.user = q.get()
+
+            if self.user == None:
+                self.user = User(id = self.current_user["id"],
+                    name = self.current_user["name"],
+                    profile_url = self.current_user["profile_url"],
+                    items = [],
+                    access_token = self.current_user["access_token"]
+                    )
+                self.user.put()
+        else:
+            print "nuts"
