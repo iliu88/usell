@@ -23,7 +23,7 @@
                 <form class = "right" action="" method="post">
                     <input type="submit" value = "" id = "button"></input>
                     <select class = "right" id = "category" name = "category">
-                        <option value="Book">Book</option>
+                        <option value="Books">Books</option>
                         <option value="Furniture">Furniture</option>
                         <option value="Other">Other</option>
                     </select>
@@ -40,7 +40,7 @@
         <fieldset name = "Your Items">
             <div class = "item">
                 <div class="left_result">
-                    <img src = "/view_photo/{{ item.blobKey_str }}" class = "itemPhoto"/>
+                    <img src = "/view_photo/{{ item.blobKey }}" class = "itemPhoto"/>
                 </div>
                 <div class = "middle_result">
                     <b class = "bigText">{{item.itemName}}</b>
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </fieldset>
-
+        <hr>
         {% endfor %}
     </div>
     </div>

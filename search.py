@@ -19,7 +19,6 @@ from basehandler import BaseHandler
 class SearchPage(BaseHandler):
 
     def get(self):
-        self.setupUser()
 
         url = self.request.url.split("%3D")[1]
         category = url.split("&")[0]
@@ -48,6 +47,8 @@ class SearchPage(BaseHandler):
             # this is a search!
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
+
+        self.get()
 
 
 

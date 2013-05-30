@@ -37,10 +37,10 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler, BaseHandler):
 
         item = Item(itemName=self.request.get('itemName'), \
                     price=self.request.get('price'), \
-                    blobKey_str = str(blob_info.key()), \
+                    blobKey = str(blob_info.key()), \
                     description=self.request.get('description'), \
                     seller = [self.user.key()],
-                    category=self.request.get('category'), \
+                    category=self.request.get('category') \
                     )
 
         item.put()            

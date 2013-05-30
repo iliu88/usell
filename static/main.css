@@ -1,16 +1,31 @@
 * {
     margin: 0;
     padding: 0;
-    background: #444;
 }
 
 #wrapper {
     text-align: center;
+    padding-bottom:20px;
+    overflow:scroll;
+    background: #444;
 }
+
+
 
 #top {
     width: 80%;
     margin: 0 auto;
+}
+
+#itemList {
+    width: 80%;
+    height: 100%;
+    padding-top: 10px;
+    bottom: 0;
+    margin: 0 auto 0px;
+    background: white;
+    background-color:white;
+
 }
 
 #title {
@@ -76,6 +91,10 @@ a:hover {
     background: #e46348;
 }
 
+hr {
+
+}
+
 #search {
     margin-top: 5px;
     border-style: none;
@@ -121,13 +140,10 @@ a:hover {
     font: 10px Verdana;
 }
 
-#itemList {
-    width: 80%;
-    height: 100%;
-    padding-top: 10px;
-    bottom: 0;
-    margin: 0 auto 0px;
-    background: white;
+
+
+#list {
+    min-width:500px;
 }
 
 fieldset {
@@ -148,12 +164,12 @@ fieldset {
 }
 
 .item {
-    padding-bottom: 100px;
     width: 90%;
     margin: 0 auto;
-    margin-top: 50px;
+    padding-top: 20px;
     background: white;
     border: 0px;
+    min-width:500px;
 }
 
 .left_result {
@@ -164,14 +180,21 @@ fieldset {
 
 .middle_result {
     float:left;
-    width:50%;
+    width:55%;
     background: white;
+    text-align: left;
+    margin-left:5%;
 }
 
 .right_result {
     float:left;
     width:20%;
     background: white;
+}
+
+.description_result {
+    background: white;
+    text-align: left;
 }
 
 .itemPhoto {

@@ -1,0 +1,87 @@
+/* Parts of this taken from
+   http://woork.blogspot.com/2008/06/clean-and-pure-css-form-design.html
+   */
+
+#postCanvas {
+    background: white;
+    width: 80%;
+    height: 100%;
+    padding-top: 10px;
+    bottom: 0;
+    margin: 0 auto 0px;
+}
+
+#postCanvas form
+{
+    background-color: inherit;
+    margin:0 auto;
+    width: 400px;
+    padding: 14px;
+}
+
+#postCanvas input 
+{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #e46348;
+    width:200px;
+    margin:2px 0 20px 10px;
+    background-color: inherit;
+}
+
+#postCanvas textarea 
+{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #e46348;
+    width:200px;
+    margin:2px 0 20px 10px;
+    background-color: inherit;
+}
+
+#postCanvas select 
+{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #e46348;
+    width:200px;
+    margin:2px 0 20px 10px;
+    background-color: inherit;
+}
+
+#postCanvas option
+{
+    background-color: inherit;
+}
+
+#postCanvas label
+{
+    background-color: inherit;
+    display:block;
+    font-weight:bold;
+    text-align:right;
+    width:140px;
+    float:left;
+}
+#postCanvas .small{
+    background-color: inherit;
+    color:#666666;
+    display:block;
+    font-size:11px;
+    font-weight:normal;
+    text-align:right;
+    width:140px;
+}
+
+#postCanvas button{
+margin-left:150px;
+width:125px;
+text-align:center;
+line-height:31px;
+color:#e46348;
+font-size:11px;
+font-weight:bold;
+}

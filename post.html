@@ -3,6 +3,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="static/main.css" >
+<link rel="stylesheet" href="static/post.css" type="text/css" media="screen" />
 <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -24,7 +25,7 @@ Don't want it? Sell it!
 <form class = "right" action="" method="post">
     <input type="submit" value = "" id = "button"></input>
     <select class = "right" id = "category" name = "category">
-        <option value="Book">Book</option>
+        <option value="Books">Books</option>
         <option value="Furniture">Furniture</option>
     </select>
     <input type="text" id = "search" name = "query"></input>
@@ -36,38 +37,41 @@ Don't want it? Sell it!
 </div>
 
 <!-- This will vary from page to page (maybe) -->
-<div id = "itemList">
+<div id = "postCanvas">
+    <h2>Post an Item to Sell!</h2>
     <form action="{{upload_url}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
         <fieldset name="Sell An Item">
-            <h2>Post an Item to Sell!</he>
-            <div class="postItem">
-            
-            <!-- Item Name -->
-            <label class="postClass">Item Name:</label>
-            <input type="text" name="itemName" id="itemName" size="40" class="postClass"><br/>
+            <label>Name
+                <span class="small">Your Item's Name</span>
+            </label>
+            <input type="text" name="itemName" id="itemName" size="40">
                 
-            <!-- Price -->
-            <label for="price" class="postClass">Price:</label>
-            <input name="price" type="number" id="price" step="any" class="postClass"> <br/> 
-                
-            <!-- Description -->
-            <label for="description" class="postClass">Description:</label>
-            <textarea type="text" name="description" id="description" 
-            rows="3" cols="60" class="postClass"></textarea> <br/>
-                
-            <!-- Category -->
-            <label for="category" class="postClass">Category: </label>
-            <select name="category" class="postClass">
-                <option value="Books">Books</option>
-                <option value="Furniture">Furniture</option>
-            </select> <br/>                    
-
-            <!-- Upload Image -->
-            <label for="file" class="postClass">Upload Image:</label>
-            <input type="file" name="file" class="postClass">
-            
-            <!-- Upload Image -->
-            <input class="centerPost" type="submit" name="Submit" value="Post New Item"></div> 
+                <label>Price
+                    <span class="small">Name your price.</span>
+                </label>
+                <input name="price" type="number" id="price" step="any">
+                    
+                    <label>Description
+                        <span class="small">Descripe your item (condition, isbn, etc.)</span>
+                    </label>
+                    <textarea type="text" name="description" id="description" 
+                        rows="3" cols="60" ></textarea>
+                    
+                    
+                    <label>Category
+                    </label>
+                    <select name="category">
+                        <option value="Books">Books</option>
+                        <option value="Furniture">Furniture</option>
+                    </select>
+                    
+                    <label>Picture
+                        <span class="small" > Upload a picture </span>
+                    </label>
+                    <input type="file" name="file" class="postClass">
+                        
+                        <button type="submit" name="Submit">Post Item</button>
+                        </form>
         </fieldset>      
     </form>
 </div>

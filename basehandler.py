@@ -30,7 +30,7 @@ class BaseHandler(webapp2.RequestHandler):
 
         if self.session.get("userKey"):
             userKey = self.session["userKey"]["key"]
-            print userKey
+            # print userKey
             self.user = db.get(userKey)
             return
 
@@ -39,7 +39,7 @@ class BaseHandler(webapp2.RequestHandler):
                                                FACEBOOK_APP_SECRET)
 
         if cookie != None:
-            print "fetching from fbk"
+            # print "fetching from fbk"
             graph = facebook.GraphAPI(cookie["access_token"])
             profile = graph.get_object("me")
 
@@ -78,7 +78,8 @@ class BaseHandler(webapp2.RequestHandler):
             sellerName = user.name,
             sellerURL = user.profile_url,
             description = item.description,
-            blobKey_str = item.blobKey_str
+            blobKey = item.blobKey,
+            category = item.category,
             )
         return disp
 

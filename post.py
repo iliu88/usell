@@ -44,8 +44,8 @@ class PostPage(BaseHandler):
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
 
-        # item POSTs will be handled by the UploadHandler
-        
+        self.get()
+
 
 
 # this is probably bad

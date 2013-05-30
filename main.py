@@ -25,7 +25,6 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreDownloadHandler):
     def get(self):
 
         self.setupUser()
-
         values = {}
 
         items = db.GqlQuery('SELECT * FROM Item '
@@ -53,7 +52,8 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreDownloadHandler):
             self.redirect('/search=' + self.request.get('category') + '&' \
                 + self.request.get('query'))
 
-        
+        self.get()
+
 # this is probably bad
 config = {}
 config['webapp2_extras.sessions'] = dict(secret_key='')
