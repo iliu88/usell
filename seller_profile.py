@@ -46,8 +46,6 @@ class SellerPage(BaseHandler):
         self.response.out.write(template.render(path,values))
 
     def post(self):
-        self.get()
-
         numArgs = len(self.request.arguments())
 
         if numArgs == self.SEARCH:

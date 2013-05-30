@@ -4,6 +4,7 @@ from google.appengine.ext import db
 from webapp2_extras import sessions
 from model import User, Item, DisplayItem
 from appengine_utilities import sessions
+import time
 
 
 FACEBOOK_APP_ID = "284783798323209"
@@ -29,6 +30,7 @@ class BaseHandler(webapp2.RequestHandler):
 
         if self.session.get("userKey"):
             userKey = self.session["userKey"]["key"]
+            print userKey
             self.user = db.get(userKey)
             return
 
@@ -56,10 +58,10 @@ class BaseHandler(webapp2.RequestHandler):
 
             self.user.access_token = cookie["access_token"]
 
-
+            self.user.put()
             userKey = str(self.user.key())
             self.session["userKey"] = {"key":userKey}
-            self.user.put()
+
 
         else:
             # redirection logic might go here

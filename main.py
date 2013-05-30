@@ -46,8 +46,6 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreDownloadHandler):
 
 
     def post(self):
-        self.get()
-
         numArgs = len(self.request.arguments())
 
         if numArgs == self.SEARCH:

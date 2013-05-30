@@ -41,7 +41,6 @@ class SearchPage(BaseHandler):
 
 
     def post(self):
-        self.get()
 
         numArgs = len(self.request.arguments())
 
